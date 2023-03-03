@@ -15,20 +15,23 @@
 <div class="container">
 
     <div class="py-5 text-center">
-        <h2>상품 등록 폼</h2>
+        <h2 th:text="#{page.addItem}">상품 등록 폼</h2>
+        <!--메세지를 통해 웹 어플리케이션의 내용을 치환 가능하다.
+            현재 locale 정보에 따라, 개발자가 미리 준비해둔 언어의 메시지로 국제화된다.
+            LocaleResolver 인터페이스를 통해 locale 정보를 수정할 수 있다.-->
     </div>
 
     <form action="item.html" th:action th:object="${item}" method="post">
         <div>
-            <label for="itemName">상품명</label>
+            <label for="itemName" th:text="#{label.item.itemName}">상품명</label>
             <input type="text" id="itemName" th:field="*{itemName}" class="form-control" placeholder="이름을 입력하세요">
         </div>
         <div>
-            <label for="price">가격</label>
+            <label for="price" th:text="#{label.item.price}">가격</label>
             <input type="text" id="price" th:field="*{price}" class="form-control" placeholder="가격을 입력하세요">
         </div>
         <div>
-            <label for="quantity">수량</label>
+            <label for="quantity" th:text="#{label.item.quantity}">수량</label>
             <input type="text" id="quantity" th:field="*{quantity}" class="form-control" placeholder="수량을 입력하세요">
         </div>
 
@@ -36,13 +39,13 @@
 
         <div class="row">
             <div class="col">
-                <button class="w-100 btn btn-primary btn-lg" type="submit">상품 등록</button>
+                <button class="w-100 btn btn-primary btn-lg" type="submit" th:text="#{button.save}">상품 등록</button>
             </div>
             <div class="col">
                 <button class="w-100 btn btn-secondary btn-lg"
                         onclick="location.href='items.html'"
                         th:onclick="|location.href='@{/message/items}'|"
-                        type="button">취소</button>
+                        type="button" th:text="#{button.cancel}">취소</button>
             </div>
         </div>
 
