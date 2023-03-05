@@ -13,15 +13,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import practice.validation.domain.item.Item;
 import practice.validation.domain.item.ItemRepository;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Slf4j
 @Controller
 @RequestMapping("/view/v2/items")
 @RequiredArgsConstructor
-public class ItemController {
+public class ItemControllerV2 {
 
     private final ItemRepository itemRepository;
 
@@ -79,7 +77,7 @@ public class ItemController {
         Item savedItem = itemRepository.save(item);
         redirectAttributes.addAttribute("itemId", savedItem.getId());
         redirectAttributes.addAttribute("status", true);
-        return "redirect:/view/v1/items/{itemId}";
+        return "redirect:/view/v2/items/{itemId}";
     }
 
     @GetMapping("/{itemId}/edit")
