@@ -27,15 +27,12 @@
         <div th:if="${#fields.hasGlobalErrors()}">
             <p class="field-error"th:each="err: ${#fields.globalErrors()}" th:text="${err}">전체 오류 메시지</p>
         </div>
-        <!--each를 이용해 복수의 ObjectError를 err에 전달, text로 err(에러 메시지)를 출력한다.-->
 
         <div>
             <label for="itemName" th:text="#{label.item.itemName}">상품명</label>
             <input type="text" id="itemName" th:field="*{itemName}"
                    th:errorclass="field-error" class="form-control" placeholder="이름을 입력하세요">
             <div class="field-error" th:errors="*{itemName}"/>
-            <!--타임리프의 errorclass를 통해 th:field의 오류를 class에 추가한다.
-                errors를 통해 필드에 오류 발생시 태그를 활성화한다.-->
         </div>
         <div>
             <label for="price" th:text="#{label.item.price}">가격</label>
