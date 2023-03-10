@@ -3,6 +3,7 @@ package practice.validation.web.controller;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import practice.validation.domain.login.LoginService;
 import practice.validation.domain.member.Member;
 import practice.validation.web.login.LoginForm;
+import practice.validation.web.session.SessionConst;
 import practice.validation.web.session.SessionManager;
 
 import java.net.http.HttpResponse;
@@ -56,7 +58,7 @@ public class LoginController {
         return "redirect:/";
     }
 
-    @PostMapping("/login")
+    //@PostMapping("/login")
     public String loginV2(@Validated @ModelAttribute LoginForm form, BindingResult bindingResult, HttpServletResponse response){
 
         if(bindingResult.hasErrors()){
@@ -79,6 +81,32 @@ public class LoginController {
         return "redirect:/";
     }
 
+    @PostMapping("/login")
+    public String loginV3(@Validated @ModelAttribute LoginForm form, BindingResult bindingResult, HttpServletRequest request){
+
+        if(bindingResult.hasErrors()){
+            return "view/login/loginForm";
+        }
+
+        Member loginMember = loginService.login(form.getLoginId(),form.getPassword());
+        log.info("login? {}", loginMember);
+
+        if(loginMember == null){
+            bindingResult.reject("loginFail","아이디 혹은 비밀번호 불일치 오류");
+            return "view/login/loginForm";
+        }
+
+        HttpSession session = request.getSession();
+        session.setAttribute(SessionConst.LOGIN_MEMBER,loginMember);
+        // 서븛릿의 HttpSession을 통해 신슈 세션 생성 및 기존 세션 반환, 회원 정보 보관을 한다.
+        // request.getSession()에 어떤 값을 설정하는냐에 따라 동작이 달라진다.
+        //      세션 있을시: 기존 세션을 반환한다.
+        //      세션 없을시: true면 새로운 세션을 생성 및 반환한다.
+        //                 false면 생성하지 않고 null을 반환한다.
+
+        return "redirect:/";
+    }
+
     //@PostMapping("/logout")
     public String logout(HttpServletResponse response){
         Cookie cookie=new Cookie("memberId",null);
@@ -87,9 +115,18 @@ public class LoginController {
         return "redirect:/";
     }
 
-    @PostMapping("/logout")
+    //@PostMapping("/logout")
     public String logoutV2(HttpServletRequest request){
         sessionManager.expire(request);
+        return "redirect:/";
+    }
+
+    @PostMapping("/logout")
+    public String logoutV3(HttpServletRequest request){
+        HttpSession session=request.getSession(false);
+        if(session!=null){
+            session.invalidate();
+        }
         return "redirect:/";
     }
 }
