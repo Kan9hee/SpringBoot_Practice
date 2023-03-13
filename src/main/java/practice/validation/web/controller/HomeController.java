@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import practice.validation.web.argumentresolver.Login;
 import practice.validation.web.domain.member.Member;
 import practice.validation.web.domain.member.MemberRepository;
 import practice.validation.web.session.SessionConst;
@@ -70,7 +71,7 @@ public class HomeController {
         return "view/loginHome";
     }
 
-    @GetMapping("/")
+    //@GetMapping("/")
     public String homeLoginV3Spring(
             @SessionAttribute(name=SessionConst.LOGIN_MEMBER,required = false)Member member, Model model){
         // @SessionAttribute를 통해 세션에서 getAttribute하는 과정을 쉽게 해결할 수 있다.
@@ -80,6 +81,17 @@ public class HomeController {
         }
 
         model.addAttribute("member",member);
+        return "view/loginHome";
+    }
+
+    @GetMapping("/")
+    public String homeLoginV3ArgumentResolver(@Login Member loginMember, Model model){
+
+        if(loginMember==null){
+            return "view/home";
+        }
+
+        model.addAttribute("member",loginMember);
         return "view/loginHome";
     }
 }
