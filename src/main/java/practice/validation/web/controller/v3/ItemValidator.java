@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
-import practice.validation.domain.item.Item;
+import practice.validation.web.domain.item.Item;
 
 @Component
 public class ItemValidator implements Validator {

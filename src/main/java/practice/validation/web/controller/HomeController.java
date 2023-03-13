@@ -1,8 +1,6 @@
 package practice.validation.web.controller;
 
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -10,10 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
-import practice.validation.domain.member.Member;
-import practice.validation.domain.member.MemberRepository;
+import practice.validation.web.domain.member.Member;
+import practice.validation.web.domain.member.MemberRepository;
 import practice.validation.web.session.SessionConst;
 import practice.validation.web.session.SessionManager;
 

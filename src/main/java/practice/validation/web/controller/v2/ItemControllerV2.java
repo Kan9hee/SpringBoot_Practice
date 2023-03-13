@@ -10,8 +10,8 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import practice.validation.domain.item.Item;
-import practice.validation.domain.item.ItemRepository;
+import practice.validation.web.domain.item.Item;
+import practice.validation.web.domain.item.ItemRepository;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package practice.validation.domain.item;
+package practice.validation.web.domain.item;
 
 import org.springframework.stereotype.Repository;
 

@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import practice.validation.domain.member.Member;
-import practice.validation.domain.member.MemberRepository;
+import practice.validation.web.domain.member.Member;
+import practice.validation.web.domain.member.MemberRepository;
 
 @Controller
 @RequiredArgsConstructor

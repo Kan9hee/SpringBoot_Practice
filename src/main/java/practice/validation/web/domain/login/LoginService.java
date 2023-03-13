@@ -1,11 +1,9 @@
-package practice.validation.domain.login;
+package practice.validation.web.domain.login;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import practice.validation.domain.member.Member;
-import practice.validation.domain.member.MemberRepository;
-
-import java.util.Optional;
+import practice.validation.web.domain.member.Member;
+import practice.validation.web.domain.member.MemberRepository;
 
 @Service
 @RequiredArgsConstructor

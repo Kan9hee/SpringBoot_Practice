@@ -1,13 +1,10 @@
 package practice.validation.web.session;
 
-import jakarta.servlet.http.HttpServletResponse;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
-import practice.validation.domain.member.Member;
-
-import static org.junit.jupiter.api.Assertions.*;
+import practice.validation.web.domain.member.Member;
 
 class SessionManagerTest {
     SessionManager sessionManager = new SessionManager();

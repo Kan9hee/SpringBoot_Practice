@@ -1,4 +1,4 @@
-package practice.validation.domain.member;
+package practice.validation.web.domain.member;
 
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;

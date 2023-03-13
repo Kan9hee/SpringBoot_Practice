@@ -1,11 +1,11 @@
 package practice.validation;
 
-import practice.validation.domain.item.Item;
-import practice.validation.domain.item.ItemRepository;
+import practice.validation.web.domain.item.Item;
+import practice.validation.web.domain.item.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import practice.validation.domain.member.Member;
-import practice.validation.domain.member.MemberRepository;
+import practice.validation.web.domain.member.Member;
+import practice.validation.web.domain.member.MemberRepository;
 
 import javax.annotation.PostConstruct;
 

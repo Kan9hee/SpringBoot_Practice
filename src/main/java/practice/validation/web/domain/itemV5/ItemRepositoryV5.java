@@ -1,7 +1,6 @@
-package practice.validation.domain.itemV5;
+package practice.validation.web.domain.itemV5;
 
 import org.springframework.stereotype.Repository;
-import practice.validation.domain.itemV5.ItemV5;
 
 import java.util.ArrayList;
 import java.util.HashMap;

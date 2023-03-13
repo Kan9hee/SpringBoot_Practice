@@ -8,8 +8,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import practice.validation.domain.itemV5.ItemV5;
-import practice.validation.domain.itemV5.ItemRepositoryV5;
+import practice.validation.web.domain.itemV5.ItemV5;
+import practice.validation.web.domain.itemV5.ItemRepositoryV5;
 import practice.validation.web.controller.form.ItemSaveForm;
 import practice.validation.web.controller.form.ItemUpdateForm;
 

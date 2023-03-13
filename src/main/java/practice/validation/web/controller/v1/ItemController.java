@@ -2,8 +2,8 @@ package practice.validation.web.controller.v1;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
-import practice.validation.domain.item.Item;
-import practice.validation.domain.item.ItemRepository;
+import practice.validation.web.domain.item.Item;
+import practice.validation.web.domain.item.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
