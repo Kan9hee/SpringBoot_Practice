@@ -17,7 +17,7 @@ import java.util.List;
 
 @Slf4j
 @Controller
-@RequestMapping("/view/v5/items")
+@RequestMapping("/items")
 @RequiredArgsConstructor
 public class ItemControllerV5 {
 
@@ -70,7 +70,7 @@ public class ItemControllerV5 {
         ItemV5 savedItem=itemRepositoryV5.save(itemV5);
         redirectAttributes.addAttribute("itemId", savedItem.getId());
         redirectAttributes.addAttribute("status", true);
-        return "redirect:/view/v5/items/{itemId}";
+        return "redirect:/items/{itemId}";
     }
 
     @GetMapping("/{itemId}/edit")
@@ -101,7 +101,7 @@ public class ItemControllerV5 {
         itemParam.setQuantity(form.getQuantity());
 
         itemRepositoryV5.update(itemId, itemParam);
-        return "redirect:/view/v5/items/{itemId}";
+        return "redirect:/items/{itemId}";
     }
 
 }

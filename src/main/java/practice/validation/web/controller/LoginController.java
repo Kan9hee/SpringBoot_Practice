@@ -13,6 +13,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import practice.validation.domain.login.LoginService;
 import practice.validation.domain.member.Member;
 import practice.validation.web.login.LoginForm;
@@ -81,7 +82,7 @@ public class LoginController {
         return "redirect:/";
     }
 
-    @PostMapping("/login")
+    //@PostMapping("/login")
     public String loginV3(@Validated @ModelAttribute LoginForm form, BindingResult bindingResult, HttpServletRequest request){
 
         if(bindingResult.hasErrors()){
@@ -105,6 +106,31 @@ public class LoginController {
         //                 false면 생성하지 않고 null을 반환한다.
 
         return "redirect:/";
+    }
+
+    @PostMapping("/login")
+    public String loginV4(@Validated @ModelAttribute LoginForm form,
+                          BindingResult bindingResult,
+                          HttpServletRequest request,
+                          @RequestParam(defaultValue = "/") String redirectURL){
+
+        if(bindingResult.hasErrors()){
+            return "view/login/loginForm";
+        }
+
+        Member loginMember = loginService.login(form.getLoginId(),form.getPassword());
+        log.info("login? {}", loginMember);
+
+        if(loginMember == null){
+            bindingResult.reject("loginFail","아이디 혹은 비밀번호 불일치 오류");
+            return "view/login/loginForm";
+        }
+
+        HttpSession session = request.getSession();
+        session.setAttribute(SessionConst.LOGIN_MEMBER,loginMember);
+
+        return "redirect:"+redirectURL;
+        // 로그인시 현재 위치에서 로그인된 결과를 반환한다.
     }
 
     //@PostMapping("/logout")
