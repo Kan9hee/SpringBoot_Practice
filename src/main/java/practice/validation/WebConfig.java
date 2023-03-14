@@ -1,5 +1,6 @@
 package practice.validation;
 
+import jakarta.servlet.DispatcherType;
 import jakarta.servlet.Filter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -18,7 +19,7 @@ import java.util.List;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
-    @Override
+    //@Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers){
         resolvers.add(new LoginMemberArgumentResolver());
     }
@@ -27,13 +28,10 @@ public class WebConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry){
         registry.addInterceptor(new LoginInterceptor())
                 .order(1)
-                .addPathPatterns("/**") // 인터셉터 적용
-                .excludePathPatterns("/css/**","/*.ico","/error"); // 인터셉터 미적용
-
-        registry.addInterceptor(new LoginCheckInterceptor())
-                .order(2)
                 .addPathPatterns("/**")
-                .excludePathPatterns("/","members/add","/login","/logout","/css/**","/*/ico","/error");
+                .excludePathPatterns("/css/**","/*.ico","/error","/error-page/**"); // 오류 페이지 경로
+        // dispatcherPath를 쓰지 못하는 대신, excludePathPatterns을 사용한다.
+        // 이 경우, 인터셉터는 경로의 중복 호출을 제거하여 WAS의 오류 반환시 필터와 인터셉터의 호출을 생략한다.
     }
 
     //@Bean
@@ -52,6 +50,18 @@ public class WebConfig implements WebMvcConfigurer {
         filterRegistrationBean.setFilter(new LoginCheckFilter());
         filterRegistrationBean.setOrder(2); //logFilter 다음으로 실행됨
         filterRegistrationBean.addUrlPatterns("/*");
+
+        return filterRegistrationBean;
+    }
+
+    //@Bean
+    public FilterRegistrationBean logFilterV2(){
+        FilterRegistrationBean<Filter> filterRegistrationBean = new FilterRegistrationBean<>();
+        filterRegistrationBean.setFilter(new LogFilter());
+        filterRegistrationBean.setOrder(1);
+        filterRegistrationBean.addUrlPatterns("/*");
+        //filterRegistrationBean.setDispatcherTypes(DispatcherType.REQUEST,DispatcherType.ERROR);
+        // 오류페이지 요청 전용 필터 사용시 DispatcherType.ERROR를 사용한다.
 
         return filterRegistrationBean;
     }
