@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+
+<div class="container" style="max-width: 600px">
+    <div class="py-5 text-center">
+        <h2>500 오류 페이지</h2>
+    </div>
+
+    <div>
+        <p>오류 화면 입니다.</p>
+    </div>
+
+    <ul>
+        <li>오류 정보</li>
+        <ul>
+            <li th:text="|timestamp: ${timestamp}|"/>
+            <li th:text="|path: ${path}|"/>
+            <li th:text="|status: ${status}|"/>
+            <li th:text="|message: ${message}|"/>
+            <li th:text="|error: ${error}|"/>
+            <li th:text="|exception: ${exception}|"/>
+            <li th:text="|errors: ${errors}|"/>
+            <li th:text="|trace: ${trace}|"/>
+        </ul>
+        <!--오류 세보정보를 노출시켜 보여주나, 이는 고객에게 좋지도 않고 보안상 문제가 된다.-->
+    </ul>
+
+    <hr class="my-4">
+
+</div> <!-- /container -->
+
+</body>
+</html>
