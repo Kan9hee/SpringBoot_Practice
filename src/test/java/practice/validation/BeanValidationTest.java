@@ -2,7 +2,7 @@ package practice.validation;
 
 import jakarta.validation.*;
 import org.junit.jupiter.api.Test;
-import practice.validation.web.domain.item.Item;
+import practice.web.domain.item.Item;
 
 import java.util.Set;
 
