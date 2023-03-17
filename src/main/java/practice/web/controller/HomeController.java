@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
-import practice.web.argumentresolver.Login;
+import practice.web.resolver.argumentresolver.Login;
 import practice.web.domain.member.Member;
 import practice.web.domain.member.MemberRepository;
 import practice.web.session.SessionConst;

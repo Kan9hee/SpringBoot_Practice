@@ -1,4 +1,4 @@
-package practice.web;
+package practice.web.exception;
 
 public class UserException extends RuntimeException{
     public UserException() {

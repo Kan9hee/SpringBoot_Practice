@@ -6,7 +6,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
-import practice.web.UserException;
+import practice.web.exception.UserException;
 
 import java.io.IOException;
 import java.util.HashMap;

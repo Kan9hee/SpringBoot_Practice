@@ -3,10 +3,14 @@ package practice.web.controller;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import practice.web.UserException;
+import org.springframework.web.server.ResponseStatusException;
+import practice.web.exception.BadRequestException;
+import practice.web.exception.UserException;
 
 @Slf4j
 @RestController
@@ -27,6 +31,23 @@ public class ApiExceptionController {
 
         return new MemberDto(id, "hello " + id);
     }
+
+    @GetMapping("/api/response-status-ex1")
+    public String responseStatusEx1(){
+        throw new BadRequestException();
+    }
+
+    @GetMapping("/api/response-status-ex2")
+    public String responseStatusEx2(){
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND,"error.bad",new IllegalArgumentException());
+    }
+    // HTTP의 응답 코드를 변경해준다.
+
+    @GetMapping("/api/default-handler-ex")
+    public String defaultException(@RequestParam Integer data){
+        return "ok";
+    }
+    // 스프링 내부에서 예외를 처리해준다. 다양한 상황에 맞는 오류로 처리해준다.
 
     @Data
     @AllArgsConstructor

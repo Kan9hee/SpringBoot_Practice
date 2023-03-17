@@ -1,4 +1,4 @@
-package practice.web.argumentresolver;
+package practice.web.resolver.argumentresolver;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
