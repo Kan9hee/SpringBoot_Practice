@@ -12,6 +12,7 @@ import practice.web.converter.IntegerToStringConverter;
 import practice.web.converter.IpPortToStringConverter;
 import practice.web.converter.StringToIntegerConverter;
 import practice.web.converter.StringToIpPortConverter;
+import practice.web.formatter.MyNumberFormatter;
 import practice.web.resolver.argumentresolver.LoginMemberArgumentResolver;
 import practice.web.filter.LogFilter;
 import practice.web.filter.LoginCheckFilter;
@@ -41,10 +42,12 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addFormatters(FormatterRegistry registry){
-        registry.addConverter(new StringToIntegerConverter());
-        registry.addConverter(new IntegerToStringConverter());
+        //registry.addConverter(new StringToIntegerConverter());
+        //registry.addConverter(new IntegerToStringConverter());
         registry.addConverter(new StringToIpPortConverter());
         registry.addConverter(new IpPortToStringConverter());
+
+        registry.addFormatter(new MyNumberFormatter());
     }
 
     @Override
